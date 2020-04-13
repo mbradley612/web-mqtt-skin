@@ -16,7 +16,7 @@ client = mqtt.Client("client-socks",transport = "websockets")
 client.on_connect = on_connect
 client.on_message = on_message
 
-client.connect("77.44.17.186", 9001, 60)
+client.connect("hostname", 9001, 60)
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.

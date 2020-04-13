@@ -13,7 +13,7 @@ class BasicInstaller(ExtensionInstaller):
         super(BasicInstaller, self).__init__(
             version="0.1",
             name='web-mqtt-skin',
-            description='Skin that produces a simple web page that displaying the MQTT loop.',
+            description='HTML from MQTT loop',
             author="Matthew Bradley",
             author_email="mbradley612@github.com",
             config={
@@ -22,7 +22,8 @@ class BasicInstaller(ExtensionInstaller):
                         'skin': 'web-mqtt',
                         'HTML_ROOT': 'web-mqtt'}}},
             files=[('skins/web-mqtt',
-                    ['skins/web-mqtt/index.html.tmpl',
+                    ['skins/web-mqtt/skin.conf',
+                      'skins/web-mqtt/index.html.tmpl',
                      'skins/web-mqtt/update-live-weather-mqtt.js',
                      ]),
                    ]

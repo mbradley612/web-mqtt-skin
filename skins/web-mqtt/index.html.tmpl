@@ -12,10 +12,10 @@
 // once the page has loaded
 jQuery(document).ready(function () {
 	
-		host="$Extras.Web-MQTT.host";
-        port=$Extras.Web-MQTT.port;
-        reconnectTimeout = $Extras.Web-MQTT.reconnectTimeout;
-        topic = "$Extras.Web-MQTT.topic"
+		host="$Extras.WebMQTT.host";
+        port=$Extras.WebMQTT.port;
+        reconnectTimeout = $Extras.WebMQTT.reconnectTimeout;
+        topic = "$Extras.WebMQTT.topic"
 		MQTTstart(host,port, reconnectTimeout,topic)
 		
 		
