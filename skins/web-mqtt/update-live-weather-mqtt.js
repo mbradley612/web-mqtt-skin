@@ -72,6 +72,7 @@ var reconnectTimeout;
 var host; 
 var port;
 var topic;
+var isSSL;
 
 function onFailure(message) {
 	console.log("Connection Attempt to Host "+host+"Failed");
@@ -91,12 +92,17 @@ mqtt.subscribe(topic);
 
 }
 
-function MQTTstart(pHost,pPort,pReconnectTimeout,pTopic) {
+function MQTTstart(pHost,pPort,pReconnectTimeout,pTopic,pSSL) {
 	// set globals
 	host = pHost;
 	port = pPort;
 	reconnectTimeout = pReconnectTimeout;
 	topic = pTopic;
+	if (pSSL=="Y") {
+		isSSL = true;
+	} else {
+		isSSL = false;
+	}
 
 	// connect
 	MQTTConnect();
@@ -105,13 +111,19 @@ function MQTTstart(pHost,pPort,pReconnectTimeout,pTopic) {
 function MQTTConnect() {
 	console.log("connecting to "+ host +" "+ port);
 
+	
+
 	mqtt = new Paho.MQTT.Client(host,port,"clientjs");
 	
 	
 	var options = {
-		timeout: 3,
+		timeout: timeout,
+		useSSL: isSSL,
 		onSuccess: onConnect,
 		onFailure: onFailure,
+		keepAliveInterval: 10,
+		
+
 			};
 	mqtt.onMessageArrived = onMessageArrived
 

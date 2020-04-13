@@ -14,9 +14,10 @@ jQuery(document).ready(function () {
 	
 		host="$Extras.WebMQTT.host";
         port=$Extras.WebMQTT.port;
-        reconnectTimeout = $Extras.WebMQTT.reconnectTimeout;
+        timeout = $Extras.WebMQTT.timeout;
         topic = "$Extras.WebMQTT.topic"
-		MQTTstart(host,port, reconnectTimeout,topic)
+        isSSL = "$Extras.WebMQTT.ssl"
+		MQTTstart(host,port, timeout,topic,isSSL)
 		
 		
 	
