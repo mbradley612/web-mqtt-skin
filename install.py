@@ -11,7 +11,7 @@ def loader():
 class BasicInstaller(ExtensionInstaller):
     def __init__(self):
         super(BasicInstaller, self).__init__(
-            version="0.1",
+            version="0.14",
             name='web-mqtt-skin',
             description='HTML from MQTT loop',
             author="Matthew Bradley",

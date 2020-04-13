@@ -39,7 +39,7 @@ function getCardinal(angle) {
 				  : "NW";
   }
 
-function updateWeather(loopData) {
+function updateLoopWeather(loopData) {
 	jsonLoopData = JSON.parse(loopData);
 
 	jQuery("#windSpeed").text(Math.round(jsonLoopData.windSpeed_kph));
@@ -67,65 +67,34 @@ function updateWeather(loopData) {
 
 }
 
-var mqtt;
-var reconnectTimeout;
-var host; 
-var port;
-var topic;
-var isSSL;
 
-function onFailure(message) {
-	console.log("Connection Attempt to Host "+host+"Failed");
-	setTimeout(MQTTconnect, reconnectTimeout);
-}
-function onMessageArrived(msg){
-	
-	updateWeather(msg.payloadString)
 
-}
+function MQTTConnect(url, loopTopic, archiveTopic) {
+	console.log("connecting to "+ url);
 
-function onConnect() {
-// Once a connection has been made, make a subscription and send a message.
+	client = mqtt.connect(url);
 
-console.log("Connected ");
-mqtt.subscribe(topic);
-
-}
-
-function MQTTstart(pHost,pPort,pReconnectTimeout,pTopic,pSSL) {
-	// set globals
-	host = pHost;
-	port = pPort;
-	reconnectTimeout = pReconnectTimeout;
-	topic = pTopic;
-	if (pSSL=="Y") {
-		isSSL = true;
-	} else {
-		isSSL = false;
-	}
-
-	// connect
-	MQTTConnect();
-}
-
-function MQTTConnect() {
-	console.log("connecting to "+ host +" "+ port);
-
+	client.subscribe(loopTopic)	;
 	
 
-	mqtt = new Paho.MQTT.Client(host,port,"clientjs");
-	
-	
-	var options = {
-		timeout: timeout,
-		useSSL: isSSL,
-		onSuccess: onConnect,
-		onFailure: onFailure,
-		keepAliveInterval: 10,
-		
+	client.on('connect', () => {
+		console.log('Connect success')
+	})
 
-			};
-	mqtt.onMessageArrived = onMessageArrived
+	client.on('message', function (topic, message) {
 
-	mqtt.connect(options); //connect
+
+		if (topic == loopTopic) {
+			updateLoopWeather(message);
+		}
+
+	})
+
+	client.on('reconnect', (error) => {
+		console.log('reconnecting:', error)
+	})
+
+	client.on('error', (error) => {
+		console.log('Connect Error:', error)
+	})
 }
