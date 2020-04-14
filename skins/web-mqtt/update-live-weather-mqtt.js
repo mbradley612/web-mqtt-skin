@@ -48,8 +48,8 @@ function updateLoopWeather(loopData) {
 	jQuery("#windGust").text(Math.round(jsonLoopData.windGust_kph));
 	jQuery("#mobWindGust").text(Math.round(jsonLoopData.windGustkph));
 
-	jQuery("#windDir").text(getCardinal(jsonLoopData.windDir));
-	jQuery("#mobWindDir").text(getCardinal(jsonLoopData.windDir));
+	jQuery("#windDir").text(getCardinal(Math.round(jsonLoopData.windDir)));
+	jQuery("#mobWindDir").text(getCardinal(Math.round(jsonLoopData.windDir)));
 
 
 	//jQuery("#outTemp").text(json.outTemp.value);
