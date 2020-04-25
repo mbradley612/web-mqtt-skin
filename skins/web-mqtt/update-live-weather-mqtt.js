@@ -52,8 +52,8 @@ function updateLoopWeather(loopData) {
 	jQuery("#mobWindDir").text(getCardinal(Math.round(jsonLoopData.windDir)));
 
 
-	jQuery("#windDirDegrees").text(Math.round(jsonLoopData.windDir));
-	jQuery("#mobWindDirDegrees").text(Math.round(jsonLoopData.windDir));
+	jQuery("#windDirDegrees").html(Math.round(jsonLoopData.windDir) + "&#176");
+	jQuery("#mobWindDirDegrees").html(Math.round(jsonLoopData.windDir) + "&#176");
 
 
 	//jQuery("#outTemp").text(json.outTemp.value);
