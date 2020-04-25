@@ -42,14 +42,18 @@ function getCardinal(angle) {
 function updateLoopWeather(loopData) {
 	jsonLoopData = JSON.parse(loopData);
 
-	jQuery("#windSpeed").text(Math.round(jsonLoopData.windSpeed_kph));
-	jQuery("#mobWindSpeed").text(Math.round(jsonLoopData.windSpeed_kph));
+	jQuery("#windSpeed").text(Math.round(jsonLoopData.windSpeed_knot));
+	jQuery("#mobWindSpeed").text(Math.round(jsonLoopData.windSpeed_knot));
 
-	jQuery("#windGust").text(Math.round(jsonLoopData.windGust_kph));
-	jQuery("#mobWindGust").text(Math.round(jsonLoopData.windGustkph));
+	jQuery("#windGust").text(Math.round(jsonLoopData.windGust_knot));
+	jQuery("#mobWindGust").text(Math.round(jsonLoopData.windGust_knot));
 
 	jQuery("#windDir").text(getCardinal(Math.round(jsonLoopData.windDir)));
 	jQuery("#mobWindDir").text(getCardinal(Math.round(jsonLoopData.windDir)));
+
+
+	jQuery("#windDirDegrees").text(Math.round(jsonLoopData.windDir));
+	jQuery("#mobWindDirDegrees").text(Math.round(jsonLoopData.windDir));
 
 
 	//jQuery("#outTemp").text(json.outTemp.value);
