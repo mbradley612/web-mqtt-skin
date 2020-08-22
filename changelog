@@ -3,3 +3,4 @@
 0.17 - fixed bug where windDir not converted to a number before passing to ordinal function
 0.18 - changed windSpeed_kph to windSpeed_knot and windGust_kph to windGust_knot. Added direction
 in degrees to the web interface,
+0.20 - issue #1 - downgraded mqtt library to 4.1.0 to overcome bug with wss not supported in browsers in 4.2.0
